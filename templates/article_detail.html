@@ -1,0 +1,101 @@
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        /* Styl dla zawartości */
+        .article-entry {
+            text-align: center; /* Wyśrodkowanie tekstu w div.article-entry */
+            max-width: 600px; /* Maksymalna szerokość zawartości */
+            margin: 0 auto; /* Wyśrodkowanie zawartości na osi poziomej */
+            padding: 20px; /* Dodatkowy margines wokół zawartości */
+            font-size: 25px; /* Zwiększenie rozmiaru tekstu nagłówka */
+
+        }
+
+        /* Styl dla nagłówka */
+        .article-entry h1 {
+            font-size: 50px; /* Zwiększenie rozmiaru tekstu nagłówka */
+            color: #FF6384;
+        }
+
+        /* Styl dla przycisku */
+        .btn-gradient-pink-orange {
+            background: linear-gradient(to right, #FF1493, #FF6384, #FF9F40);
+            border: none;
+            border-radius: 10px;
+            box-shadow: none;
+            box-shadow: 0 0 0 2px #FF1493;
+            color: white;
+            padding: 10px 20px;
+            font-size: 20px; /* Zwiększenie rozmiaru tekstu przycisku */
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+            text-decoration: none; /* Usunięcie podkreślenia z linku */
+        }
+
+        /* Styl dla linków */
+        .btn-gradient-pink-orange:hover {
+            opacity: 0.8;
+        }
+
+        a {
+            color: #FF6384;
+            text-decoration: none; /* Usunięcie podkreślenia z linków */
+        }
+
+        a:hover {
+            color: #FF1493;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+    
+            
+        }
+
+        li {
+            background-color: #fff;
+            border: 1px solid #fff;
+            border-radius: 5px;
+            padding: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            margin: 10px auto;
+            margin-bottom: -15px; /* Dodaj ten styl, aby oddzielić artykuły od siebie */
+            
+            /* Remove the bullet point */
+            list-style-type: none;
+        }
+        
+
+    </style>
+</head>
+<body><li>
+    <div class="article-entry">
+        <h1>{{ event.name }}</h1>
+        <p>
+            <h4>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-balloon-heart-fill" viewBox="0 0 16 16">
+                </svg> {{ event.date }}
+            </h4>
+        </p>
+        <p>{{ event.description }}</p>
+        <p><a href="{% url 'articles' %}" >Back to All Articles</a></p></li>
+    </div>
+</body>
+</html>

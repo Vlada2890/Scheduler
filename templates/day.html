@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day Events</title>
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+
+    }
+
+    h1 {
+        color: #000;
+        padding: 20px;
+        text-align: center;
+        margin: 0;
+    }
+
+
+    li {
+        background-color: #fff;
+        border: 1px solid #fff;
+        border-radius: 5px;
+        padding: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        width: 80%;
+        margin: 10px auto;
+        margin-bottom: -15px; /* Dodaj ten styl, aby oddzielić artykuły od siebie */
+        
+        /* Remove the bullet point */
+        list-style-type: none;
+    }
+    
+    strong {
+        color: #FF6384;
+    }
+
+
+
+    li:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        
+    }
+
+    a {
+        color: #FF6384;
+        text-decoration: none; /* Usunięcie podkreślenia z linków */
+    }
+
+
+</style>
+<body>
+    <li>
+    <h1>Events for Selected Date</h1>
+    <a><p>Selected Date: </a>{{ selected_date }}</p>
+    
+    <ul>
+        {% for event in events %}
+          <li>{{ event.name }} -{{ event.date }} - {{ event.description }}</li>
+        {% empty %}
+          <li>No events found.</li>
+        {% endfor %}
+    </ul>
+    
+    <p><a href="{% url 'articles' %}" class="btn-gradient-pink-orange">Back to All Articles</a></p>
+</li>
+    <script>
+        var currentUrl = window.location.href;
+    
+        var urlParams = new URLSearchParams(currentUrl);
+    
+        if (urlParams.has('date')) {
+            var selectedDate = urlParams.get('date');
+            console.log('Wybrana data: ' + selectedDate);
+        } else {
+            console.log('Brak parametru "date" w adresie URL.');
+        }
+    </script>
+    
+</body>
+</html>
+
+
+
+
+
+
+
+

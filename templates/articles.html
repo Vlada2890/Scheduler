@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Articles</title> 
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+
+        }
+
+        h1 {
+            color: #000;
+            padding: 20px;
+            text-align: center;
+            margin: 0;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #fff;
+            border: 1px solid #fff;
+            border-radius: 5px;
+            padding: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            margin: 10px auto;
+            margin-bottom: -15px; /* Dodaj ten styl, aby oddzielić artykuły od siebie */
+        }
+        
+        strong {
+            color: #FF6384;
+        }
+
+        ul ul {
+            list-style-type: circle;
+            margin-top: 10px;
+            margin-left: 0px;
+        }
+
+        li:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            
+
+        }
+    </style>
+</head>
+
+<body>
+      <ul>
+        <li>
+            
+            <h1><a href="{% url 'articles' %}">Articles</a>
+                <a href="/"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-bookmark-plus" viewBox="0 0 16 16">
+                <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+                <path d="M8 4a.5.5 0 0 1 .5.5V6H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V7H6a.5.5 0 0 1 0-1h1.5V4.5A.5.5 0 0 1 8 4z"/>
+            </svg></a></h1>
+                <h1></h1>
+                <form id="dateForm">
+                    <label for="daySelect">Select a Date:</label>
+                    <input type="date" id="daySelect" name="daySelect">
+                    <input type="submit" value="Submit">
+                </form>
+            
+                
+            {% for event in events %}
+            <li>
+
+                <p><strong>Name:</strong> <a href="{% url 'article_detail' pk=event.pk %}" style="color: #FF1493;" class="article-title">{{ event.name }}</a></p>
+                <strong>Description:</strong> {{ event.description }}<br>
+                <strong>Date:</strong> {{ event.date }}<br>
+                <strong>People:</strong>
+                <ul>
+                    {% for person in event.people.all %}
+                    <li>{{ person.username }}</li>
+                    {% endfor %}
+                </ul>
+            </li>
+            {% endfor %}
+        </li>
+        </ul>
+        <script>
+
+            document.getElementById("dateForm").addEventListener("submit", function (e) {
+                e.preventDefault();
+                var selectedDate = document.getElementById("daySelect").value;
+                window.location.href = "/day?date=" + selectedDate; // Przekierowanie z wybraną datą jako parametrem
+            });
+        </script>
+        
+
+        
+</body>
+</html>
+
